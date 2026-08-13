@@ -28,7 +28,7 @@ export default function LandingPage() {
   return <main className="min-h-screen bg-[#fbfcfe] text-ink">
     <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
       <Link href="/" className="flex items-center gap-2.5">
-        <Image src={hireFlowLogo} alt="" className="h-9 w-9 shrink-0 object-contain" sizes="36px" priority />
+        <Image src={hireFlowLogo} alt="" className="h-9 w-9 shrink-0 object-contain" sizes="36px" priority unoptimized />
         <span className="text-lg font-semibold tracking-tight">HireFlow</span>
       </Link>
       <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
