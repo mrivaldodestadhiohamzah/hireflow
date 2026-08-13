@@ -4,6 +4,14 @@
 
 HireFlow is an independent portfolio project exploring a thoughtful recruiting workflow: applicant intake, job management, interview coordination, an auditable candidate pipeline, and AI-assisted resume review. It is intentionally designed so the human recruiter remains responsible for every decision.
 
+## Live Demo
+
+[https://hireflow-zeta-eight.vercel.app](https://hireflow-zeta-eight.vercel.app)
+
+## GitHub Repository
+
+[https://github.com/mrivaldodestadhiohamzah/hireflow](https://github.com/mrivaldodestadhiohamzah/hireflow)
+
 ## What is included
 
 - Public landing page and candidate-facing open-role board.
@@ -13,6 +21,10 @@ HireFlow is an independent portfolio project exploring a thoughtful recruiting w
 - FastAPI matching service with a provider-neutral, no-credential demo fallback.
 - ASP.NET Core 8 / EF Core / PostgreSQL service foundation with health check, Swagger, CORS policy, and initial jobs/candidates endpoints.
 - Docker Compose stack and GitHub Actions validation workflow.
+
+## Screenshots
+
+The public [landing page](https://hireflow-zeta-eight.vercel.app) and [recruiter demo workspace](https://hireflow-zeta-eight.vercel.app/demo) are the current, interactive product previews. Static screenshots have not been committed, so the README does not present stale visuals as the product evolves.
 
 ## Architecture
 
@@ -34,6 +46,15 @@ The running UI is deliberately self-contained with fictional demo data, so it re
 | API foundation | ASP.NET Core 8, Entity Framework Core, PostgreSQL, Swagger/OpenAPI |
 | AI | Python 3.13, FastAPI, Pydantic |
 | Delivery | Docker Compose, GitHub Actions |
+
+## Project structure
+
+```text
+src/                 Next.js public site, demo workspace, and demo API routes
+services/api/        ASP.NET Core / EF Core service foundation
+services/ai/         FastAPI, provider-neutral matching service
+.github/workflows/   Continuous-integration workflow
+```
 
 ## Local development
 
@@ -66,7 +87,7 @@ The API Swagger UI is at `http://localhost:8080/swagger`, the API health endpoin
 
 Copy `.env.example`; do not commit local environment files. `JWT_SECRET` must be replaced by a long random production secret. An LLM API credential, if used, must remain server-side and be injected only into the AI service.
 
-## Demo credentials
+## Demo mode
 
 The current polished interface is an open, seeded showcase rather than a live identity system. Planned seeded accounts for the API-backed version are:
 
@@ -77,6 +98,18 @@ The current polished interface is an open, seeded showcase rather than a live id
 | Candidate | `maya.chen@hireflow.demo` | `DemoCandidate!2026` |
 
 These are fictional demo-only identities, never production credentials.
+
+## Testing
+
+The following checks have been run locally:
+
+- `npm run test` — 2 Vitest checks passed.
+- `npm run lint` — passed.
+- `npm run build` — passed.
+- `python -m compileall -q services/ai` — passed.
+- .NET 8.0.424 restore and Release build of `services/api/HireFlow.Api.csproj` — passed.
+
+The ASP.NET project currently has no test project, so `dotnet test` has no test cases to execute. Docker Desktop is not installed in the current environment; the Compose configuration has not been run locally.
 
 ## API documentation
 
@@ -90,14 +123,26 @@ Swagger is enabled by the ASP.NET API at `/swagger`. The service currently expos
 - Secrets belong in host/deployment variables, not code or client bundles.
 - Before public deployment, add JWT validation, hashed passwords, refresh-token rotation, upload malware/type/size controls, authorization integration tests, and database migrations.
 
+## Docker
+
+`docker compose up --build` is provided for local multi-service development. Docker execution was not verified in the current environment because Docker Desktop is unavailable.
+
 ## CI/CD
 
 GitHub Actions runs web tests/build, compiles the ASP.NET API, and verifies Docker builds for every push and pull request. Deployment should be configured as a protected follow-on job with the relevant provider secrets.
 
 ## Deployment
 
-Recommended production split: Vercel for the Next.js app, Render/Fly.io/Azure Container Apps for the API and AI containers, and a managed PostgreSQL provider such as Neon or Supabase. Set the web API URL, API allowed origin, database connection string, JWT secret, and AI service URL in those providers. Configure an HTTPS health check for each service before announcing a public URL.
+The Next.js public site and seeded recruiter demo are deployed to Vercel at [hireflow-zeta-eight.vercel.app](https://hireflow-zeta-eight.vercel.app). The GitHub repository is connected to the Vercel project.
 
-## Current limitations
+The ASP.NET Core API, PostgreSQL database, and FastAPI service are not deployed. A practical next split is Render/Fly.io/Azure Container Apps for the API and AI containers, plus managed PostgreSQL (Neon or Supabase). Configure the web API URL, API allowed origin, database connection string, JWT secret, and AI service URL before enabling persistent workflows.
 
-This repository is not yet publicly deployed or published because this environment has no configured GitHub/deployment credentials and no installed .NET SDK. The demo UI works locally; the persistent auth/database workflow remains the clear next implementation milestone rather than something this README claims is complete.
+## Known limitations
+
+The deployed site is a polished, seeded portfolio demo. Candidate data, pipeline changes, jobs, and AI analysis remain client-side and reset on refresh. Authentication, file uploads, persistent PostgreSQL storage, refresh tokens, and live API/AI integrations are represented by service foundations but are not deployed or connected to the public demo.
+
+## Future improvements
+
+- Deploy the API, AI service, and managed PostgreSQL database.
+- Add migrations, seeded API data, JWT/refresh-token flows, and role authorization tests.
+- Add secure resume uploads and end-to-end application/interview workflows.

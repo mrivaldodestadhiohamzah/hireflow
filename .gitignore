@@ -8,3 +8,6 @@ __pycache__/
 bin/
 obj/
 .tools/
+.vercel
+
+.vercel
