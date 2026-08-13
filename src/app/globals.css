@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-line; }
+  body { @apply bg-mist text-ink antialiased; }
+  button, input, select { font: inherit; }
+}
+
+@layer utilities {
+  .surface { @apply rounded-2xl border border-line bg-white shadow-soft; }
+  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[.13em] text-slate-500; }
+  .nav-item { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-ink; }
+  .nav-item-active { @apply bg-blue-50 text-brand; }
+}
