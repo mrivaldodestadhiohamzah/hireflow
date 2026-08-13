@@ -1,11 +1,13 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import Image from "next/image";
 import {
   ArrowRight, Bell, BriefcaseBusiness, CalendarDays, Check, ChevronDown, ChevronRight,
   CircleHelp, Clock3, FileText, Filter, LayoutDashboard, Menu, MoreHorizontal, Plus,
   Search, Settings, ShieldCheck, SlidersHorizontal, Sparkles, Users, X
 } from "lucide-react";
+import hireFlowLogo from "./hireflowlogo.png";
 
 type Stage = "Applied" | "Screening" | "Interview" | "Technical Test" | "Offer" | "Hired" | "Rejected";
 
@@ -96,7 +98,7 @@ export default function HireFlowApp() {
   </main>;
 }
 
-function Brand() { return <button className="flex items-center gap-2.5 text-left"><span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-sm font-bold text-white">H</span><span><span className="block text-lg font-semibold tracking-tight">HireFlow</span><span className="block text-[10px] font-medium uppercase tracking-[.12em] text-slate-400">Recruiting OS</span></span></button>; }
+function Brand() { return <button className="flex items-center gap-2.5 text-left"><Image src={hireFlowLogo} alt="" className="h-9 w-9 shrink-0 object-contain" sizes="36px" priority /><span><span className="block text-lg font-semibold tracking-tight">HireFlow</span><span className="block text-[10px] font-medium uppercase tracking-[.12em] text-slate-400">Recruiting OS</span></span></button>; }
 
 function Dashboard({ candidates, setSelected, setView }: { candidates: Candidate[]; setSelected: (c: Candidate) => void; setView: (view: string) => void }) {
   return <><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="eyebrow">Tuesday, August 13</p><h1 className="mt-1 text-3xl font-semibold tracking-tight">Good morning, Morgan.</h1><p className="mt-1 text-sm text-slate-500">Here’s the pulse of your hiring activity.</p></div><button onClick={() => setView("Candidates")} className="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline">View candidate pipeline <ArrowRight size={16}/></button></div>
