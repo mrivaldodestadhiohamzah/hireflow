@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowRight, CalendarDays, Check, CheckCircle2, Clock3, FileText, Menu, ShieldCheck, Sparkles, X } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, Clock3, FileText, Menu, ShieldCheck, Sparkles, X } from "lucide-react";
 import hireFlowLogo from "./hireflowlogo.png";
 
 const roles = [
@@ -43,29 +43,24 @@ export default function LandingPage() {
       </div>
     </header>
 
-    <section className="mx-auto grid max-w-7xl gap-12 px-5 pb-20 pt-16 sm:px-8 lg:grid-cols-[1fr_.95fr] lg:items-center lg:pt-24">
+    <section className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 pt-14 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-20 lg:pt-24">
       <div>
-        <p className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-brand"><Sparkles size={14} />Recruiting, with better context</p>
-        <h1 className="mt-6 max-w-2xl text-5xl font-semibold leading-[1.04] tracking-[-.045em] sm:text-6xl">Recruit smarter.<br />Hire with confidence.</h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">HireFlow gives growing teams a clear path from application to offer—with reviewable, AI-assisted resume analysis where it matters.</p>
+        <h1 className="max-w-2xl text-5xl font-semibold leading-[1.04] tracking-[-.045em] sm:text-6xl">Manage every hire<br />in one place.</h1>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">HireFlow helps recruiting teams move from applications to interviews and offers without losing track of the details.</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link href="/demo" className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand px-5 text-sm font-semibold text-white hover:bg-blue-700">Explore the live demo <ArrowRight size={17} /></Link>
-          <button onClick={() => setJobsOpen(true)} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border bg-white px-5 text-sm font-semibold hover:bg-slate-50">Browse open roles</button>
-        </div>
-        <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600">
-          <span className="inline-flex items-center gap-1.5"><CheckCircle2 size={16} className="text-emerald-600" />Designed for focused teams</span>
-          <span className="inline-flex items-center gap-1.5"><CheckCircle2 size={16} className="text-emerald-600" />Human decisions stay human</span>
+          <Link href="/demo" className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand px-5 text-sm font-semibold text-white hover:bg-blue-700">Explore the demo <ArrowRight size={17} /></Link>
+          <button onClick={() => setJobsOpen(true)} className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border bg-white px-5 text-sm font-semibold hover:bg-slate-50">View open roles</button>
         </div>
       </div>
-      <div className="relative">
-        <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-blue-50" />
-        <div className="overflow-hidden rounded-2xl border bg-white shadow-[0_28px_70px_rgba(24,39,75,.13)]">
+      <div className="relative lg:pl-2">
+        <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-slate-100/80" />
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_28px_70px_rgba(24,39,75,.13)]">
           <div className="flex h-12 items-center gap-2 border-b px-4"><span className="h-2.5 w-2.5 rounded-full bg-slate-200" /><span className="h-2.5 w-2.5 rounded-full bg-slate-200" /><span className="h-2.5 w-2.5 rounded-full bg-slate-200" /><span className="ml-3 text-xs font-semibold text-slate-400">HireFlow · Recruiting workspace</span></div>
           <div className="p-5 sm:p-7">
-            <div className="flex items-center justify-between"><div><p className="text-sm text-slate-500">Hiring overview</p><p className="mt-1 text-2xl font-semibold">A calmer candidate flow</p></div><span className="rounded-lg bg-emerald-50 px-2.5 py-1.5 text-xs font-bold text-emerald-700">14 active roles</span></div>
+            <div className="flex items-center justify-between gap-4"><div><p className="text-sm text-slate-500">Hiring overview</p><p className="mt-1 text-2xl font-semibold tracking-tight">14 open roles, one shared view.</p></div><span className="shrink-0 rounded-lg bg-emerald-50 px-2.5 py-1.5 text-xs font-bold text-emerald-700">Active</span></div>
             <div className="mt-6 grid grid-cols-3 gap-3"><MiniMetric value="128" label="Candidates" /><MiniMetric value="82%" label="Avg. match" /><MiniMetric value="18" label="Interviews" /></div>
             <div className="mt-5 rounded-xl border bg-slate-50 p-4"><div className="flex items-center gap-3"><Avatar initials="MC" tone="bg-violet-100 text-violet-700" /><div className="min-w-0 flex-1"><div className="flex justify-between gap-2"><p className="text-sm font-semibold">Maya Chen</p><p className="text-sm font-bold text-emerald-600">91%</p></div><p className="mt-0.5 text-xs text-slate-500">Senior Frontend Engineer</p></div></div><div className="mt-3 flex gap-1.5"><Tag>React</Tag><Tag>TypeScript</Tag><Tag>Design systems</Tag></div></div>
-            <p className="mt-4 text-xs leading-relaxed text-slate-500"><Sparkles className="mr-1 inline text-brand" size={13} />AI-assisted analysis is evidence to review—not an automated decision.</p>
+            <p className="mt-4 text-xs leading-relaxed text-slate-500">Resume matching helps surface candidates. Your team makes the call.</p>
           </div>
         </div>
       </div>
