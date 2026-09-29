@@ -17,7 +17,7 @@ HireFlow is an independent portfolio project exploring a thoughtful recruiting w
 - Public landing page and candidate-facing open-role board.
 - Responsive recruiter demo workspace at `/demo` with dashboard, jobs, interviews, candidate search, filters, stage transitions, activity history, and meaningful empty/error feedback.
 - Candidate details with transparent AI-assisted matching guidance and a recruiter-facing disclaimer.
-- Next.js health/data routes: `/api/health` and `/api/dashboard`.
+- Next.js status routes: `/api/health` and `/api/dashboard` (the latter describes the browser-local demo data boundary rather than returning shared metrics).
 - FastAPI matching service with a provider-neutral, no-credential demo fallback.
 - ASP.NET Core 8 / EF Core / PostgreSQL service foundation with health check, Swagger, CORS policy, and initial jobs/candidates endpoints.
 - Docker Compose stack and GitHub Actions validation workflow.
@@ -36,7 +36,7 @@ ASP.NET Core API + EF Core ---- PostgreSQL
 FastAPI analysis service ---- optional LLM provider adapter
 ```
 
-The running UI is deliberately self-contained with fictional demo data, so it remains useful when the database or AI provider is unavailable. The service folders are the deployment-ready separation point for live persistence, authentication, uploads, and provider-backed analysis.
+The running UI is deliberately self-contained so it remains useful when the database or AI provider is unavailable. The deployed demo uses browser-local account and workspace storage scoped by normalized account email; it does not claim to be production authentication. The service folders are the deployment-ready separation point for live persistence, authentication, uploads, and provider-backed analysis.
 
 ## Tech stack
 
@@ -89,15 +89,7 @@ Copy `.env.example`; do not commit local environment files. `JWT_SECRET` must be
 
 ## Demo mode
 
-The current polished interface is an open, seeded showcase rather than a live identity system. Planned seeded accounts for the API-backed version are:
-
-| Role | Email | Password |
-| --- | --- | --- |
-| Recruiter | `morgan.reed@hireflow.demo` | `DemoRecruiter!2026` |
-| Interviewer | `ravi.shah@hireflow.demo` | `DemoInterviewer!2026` |
-| Candidate | `maya.chen@hireflow.demo` | `DemoCandidate!2026` |
-
-These are fictional demo-only identities, never production credentials.
+The recruiter workspace is a clearly labeled browser-local demo. Registration creates a local account record with a one-way password hash, and login restores that account's session. Workspace records are stored under an email-scoped key, so a newly registered user starts with empty candidates, jobs, interviews, activity, team, and settings rather than inheriting showcase content. The fictional showcase workspace is available only to the explicitly designated showcase account `nabila@hireflow.demo` after it is registered in that browser.
 
 ## Testing
 
@@ -139,7 +131,7 @@ The ASP.NET Core API, PostgreSQL database, and FastAPI service are not deployed.
 
 ## Known limitations
 
-The deployed site is a polished, seeded portfolio demo. Candidate data, pipeline changes, jobs, and AI analysis remain client-side and reset on refresh. Authentication, file uploads, persistent PostgreSQL storage, refresh tokens, and live API/AI integrations are represented by service foundations but are not deployed or connected to the public demo.
+The deployed site is a polished browser-local portfolio demo. Candidate data, pipeline changes, jobs, team changes, settings, and activity persist per local account in that browser. This is not a replacement for server-side authentication: passwords are only hashed for the local demo account registry, and there is no cross-device sync, database persistence, refresh-token rotation, file upload, or live API/AI integration in the public demo.
 
 ## Future improvements
 
