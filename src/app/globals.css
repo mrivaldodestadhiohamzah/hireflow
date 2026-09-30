@@ -78,8 +78,8 @@
 .hireflow-shell .flow-hero { border-radius: .5rem; }
 .hireflow-shell .rounded-2xl:not(.rounded-full) { border-radius: .5rem; }
 .hireflow-shell .rounded-xl:not(.rounded-full) { border-radius: .375rem; }
-.flow-page-enter #main-content .relative.overflow-hidden,
-.flow-page-enter #context .overflow-hidden { border-radius: .5rem; }
+.flow-page-enter #main-content .relative.overflow-hidden { border-radius: .5rem; }
+.flow-page-enter #context .overflow-hidden { border-radius: 0; border-left: 0; border-right: 0; background: transparent; box-shadow: none; }
 .flow-page-enter [role="dialog"] { border-radius: .5rem; }
 .flow-page-enter [class~="rounded-[1.5rem]"] { border-radius: .5rem; }
 .flow-page-enter .flow-primary-button { border-radius: .375rem !important; }
