@@ -78,11 +78,6 @@
 .hireflow-shell button, .flow-primary-button, .flow-secondary-button, .flow-small-button { -webkit-tap-highlight-color: transparent; }
 .hireflow-shell button:active, .flow-primary-button:active, .flow-secondary-button:active, .flow-small-button:active { transform: scale(.985); }
 .flow-primary-button:focus-visible, .flow-secondary-button:focus-visible, .flow-small-button:focus-visible, .flow-candidate-card:focus-visible, .flow-job-card button:focus-visible { outline: 3px solid rgba(41,98,255,.28); outline-offset: 3px; }
-.hireflow-shell .fixed.inset-0 { animation: flow-backdrop 200ms ease-out both; }
-.hireflow-shell .fixed.inset-0 > aside[role="dialog"] { animation: flow-drawer 240ms cubic-bezier(.2,.75,.25,1) both; }
-.hireflow-shell .fixed.inset-0 > section[role="dialog"] { animation: flow-modal 220ms cubic-bezier(.2,.75,.25,1) both; }
-.fixed.inset-0 { animation: flow-backdrop 200ms ease-out both; }
-.fixed.inset-0 > section:not([role="dialog"]) { animation: flow-modal 220ms cubic-bezier(.2,.75,.25,1) both; }
 .hireflow-shell .flow-panel button.group { animation: flow-card-in 420ms cubic-bezier(.2,.75,.25,1) both; }
 .hireflow-shell [role="status"] { animation: flow-toast 240ms cubic-bezier(.2,.75,.25,1) both; }
 .flow-orbit { pointer-events: none; }

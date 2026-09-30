@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { motion } from "motion/react";
 
 export function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -54,9 +55,10 @@ export function AnimatedNumber({ value, suffix = "", className = "", reducedMoti
     };
   }, [reduced, reducedMotion, value]);
 
-  return <span className={className} aria-label={`${value}${suffix}`}>{display}{suffix}</span>;
+  return <motion.span initial={reduced ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className={className} aria-label={`${value}${suffix}`}>{display}{suffix}</motion.span>;
 }
 
 export function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
-  return <div className={`flow-reveal ${className}`} style={{ "--flow-delay": `${delay}ms` } as CSSProperties}>{children}</div>;
+  const reduced = useReducedMotion();
+  return <motion.div initial={reduced ? false : { opacity: 0, y: 12 }} whileInView={reduced ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: 0.52, delay: delay / 1000, ease: [0.2, 0.75, 0.25, 1] }} className={`flow-reveal ${className}`} style={{ "--flow-delay": `${delay}ms` } as CSSProperties}>{children}</motion.div>;
 }
