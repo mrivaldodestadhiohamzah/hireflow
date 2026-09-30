@@ -91,3 +91,25 @@
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
   .flow-reveal, .flow-page-enter > *, .flow-item-pop, .flow-empty-state, .flow-skeleton, .flow-panel, .flow-candidate-card, .flow-job-card, .flow-activity, .hireflow-shell > section > div[class*="max-w-"] > *, .hireflow-shell .fixed.inset-0, .hireflow-shell .fixed.inset-0 > aside[role="dialog"], .hireflow-shell .fixed.inset-0 > section[role="dialog"], .hireflow-shell .flow-panel button.group, .hireflow-shell [role="status"] { animation: none !important; transform: none !important; }
 }
+
+[data-reduced-motion="true"] *,
+[data-reduced-motion="true"] *::before,
+[data-reduced-motion="true"] *::after {
+  scroll-behavior: auto !important;
+  transition-duration: 0.01ms !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+}
+
+[data-reduced-motion="true"] .flow-reveal,
+[data-reduced-motion="true"] .flow-page-enter > *,
+[data-reduced-motion="true"] .flow-item-pop,
+[data-reduced-motion="true"] .flow-empty-state,
+[data-reduced-motion="true"] .flow-skeleton,
+[data-reduced-motion="true"] .flow-panel,
+[data-reduced-motion="true"] .flow-candidate-card,
+[data-reduced-motion="true"] .flow-job-card,
+[data-reduced-motion="true"] .flow-activity {
+  animation: none !important;
+  transform: none !important;
+}

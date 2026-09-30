@@ -1,14 +1,14 @@
 import type { DemoUser } from "./demo-auth";
 
 export type WorkspaceStage = "Applied" | "Screening" | "Interview" | "Assessment" | "Offer" | "Hired" | "Rejected";
-export type WorkspaceJobStatus = "Open" | "Paused" | "Closed";
+export type WorkspaceJobStatus = "Draft" | "Open" | "Paused" | "Closed";
 export type WorkspaceCandidate = {
   id: number; name: string; initials: string; role: string; job: string; stage: WorkspaceStage;
   score: number; experience: string; skills: string[]; applied: string; tone: string;
   email: string; notes: string[];
 };
 export type WorkspaceJob = { id: number; title: string; department: string; location: string; type: string; status: WorkspaceJobStatus; updated: string };
-export type WorkspaceInterview = { id: number; candidateId: number; job: string; date: string; time: string; type: string; interviewer: string; status: "Scheduled" | "Completed" | "Cancelled" };
+export type WorkspaceInterview = { id: number; candidateId: number; job: string; date: string; time: string; type: string; interviewer: string; status: "Scheduled" | "Completed" | "Cancelled"; feedback?: string };
 export type WorkspaceTeamMember = { id: number; name: string; role: string; email: string; initials: string; tone: string };
 export type WorkspaceSettings = { reducedMotion: boolean; emailUpdates: boolean; weeklyDigest: boolean };
 export type WorkspaceSnapshot = {

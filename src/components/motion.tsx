@@ -7,16 +7,21 @@ export function useReducedMotion() {
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(media.matches);
+    const update = () => setReduced(media.matches || Boolean(document.querySelector('[data-reduced-motion="true"]')));
     update();
     media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
+    const observer = new MutationObserver(update);
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ["data-reduced-motion"] });
+    return () => {
+      media.removeEventListener("change", update);
+      observer.disconnect();
+    };
   }, []);
 
   return reduced;
 }
 
-export function AnimatedNumber({ value, suffix = "", className = "" }: { value: number; suffix?: string; className?: string }) {
+export function AnimatedNumber({ value, suffix = "", className = "", reducedMotion = false }: { value: number; suffix?: string; className?: string; reducedMotion?: boolean }) {
   const reduced = useReducedMotion();
   const previous = useRef(0);
   const frame = useRef<number | null>(null);
@@ -24,7 +29,7 @@ export function AnimatedNumber({ value, suffix = "", className = "" }: { value: 
 
   useEffect(() => {
     if (frame.current !== null) window.cancelAnimationFrame(frame.current);
-    if (reduced) {
+    if (reduced || reducedMotion) {
       previous.current = value;
       setDisplay(value);
       return;
@@ -47,7 +52,7 @@ export function AnimatedNumber({ value, suffix = "", className = "" }: { value: 
     return () => {
       if (frame.current !== null) window.cancelAnimationFrame(frame.current);
     };
-  }, [reduced, value]);
+  }, [reduced, reducedMotion, value]);
 
   return <span className={className} aria-label={`${value}${suffix}`}>{display}{suffix}</span>;
 }
