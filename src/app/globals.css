@@ -17,6 +17,43 @@
   .surface:hover { border-color: #d5ddf2; }
 }
 
+@layer components {
+  .flow-panel { @apply rounded-[1.35rem] border border-[#dce4de] bg-white p-5 shadow-[0_12px_32px_rgba(16,38,54,.055)] transition duration-200 sm:p-6; }
+  .flow-panel:hover { border-color: #c4d4ca; box-shadow: 0 16px 38px rgba(16, 38, 54, .08); }
+  .flow-kicker { @apply text-[10px] font-black uppercase tracking-[.16em] text-slate-400; }
+  .flow-primary-button { @apply inline-flex h-11 items-center gap-2 rounded-xl bg-[#102636] px-4 text-sm font-black text-white shadow-[0_8px_18px_rgba(16,38,54,.15)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#183b50] active:translate-y-0; }
+  .flow-secondary-button { @apply inline-flex h-11 items-center gap-2 rounded-xl border border-[#d5e0d9] bg-white px-4 text-sm font-black text-[#102636] transition duration-200 hover:-translate-y-0.5 hover:border-[#102636] hover:bg-[#f7faf8] active:translate-y-0; }
+  .flow-small-button { @apply inline-flex h-10 items-center gap-2 rounded-xl border border-[#d8e2dc] bg-white px-3 text-xs font-black text-slate-600 transition hover:border-[#102636] hover:text-[#102636]; }
+  .flow-link { @apply inline-flex items-center gap-1 text-xs font-black text-[#2962ff] hover:underline; }
+  .flow-input { @apply h-11 w-full rounded-xl border border-[#d8e2dc] bg-white px-3 text-sm font-normal text-[#102636] outline-none transition placeholder:text-slate-400 focus:border-[#2962ff] focus:ring-4 focus:ring-blue-100; }
+  .flow-candidate-card { @apply rounded-2xl border border-[#e1e9e3] bg-white p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[#2962ff] hover:shadow-[0_12px_28px_rgba(41,98,255,.09)]; }
+  .flow-job-card { @apply rounded-[1.35rem] border border-[#dce4de] bg-white p-5 shadow-[0_12px_32px_rgba(16,38,54,.055)] transition duration-200 hover:-translate-y-0.5 hover:border-[#102636] hover:shadow-[0_18px_36px_rgba(16,38,54,.1)]; }
+  .flow-activity { @apply flex items-start gap-3 rounded-2xl border border-slate-100 bg-[#fbfcfb] p-4; }
+  .flow-activity-mark { @apply grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#d9ff9d] text-[#102636]; }
+}
+
+.hireflow-shell { background: #edf2f0; }
+.hireflow-shell > aside { background: #102636 !important; border-color: rgba(255,255,255,.1) !important; color: white; box-shadow: 12px 0 40px rgba(16,38,54,.08); }
+.hireflow-shell > aside .nav-item { color: #a9bbc5; }
+.hireflow-shell > aside .nav-item:hover { background: rgba(255,255,255,.08); color: white; }
+.hireflow-shell > aside .nav-item-active { background: #d9ff9d; color: #102636; box-shadow: none; }
+.hireflow-shell > aside .nav-item-active:hover { background: #d9ff9d; color: #102636; }
+.hireflow-shell > aside .eyebrow { color: #708893; }
+.hireflow-shell > aside .text-lg { color: white; }
+.hireflow-shell > aside .text-slate-400 { color: #8ea6b2; }
+.hireflow-shell > aside .bg-slate-50 { background: rgba(255,255,255,.08); }
+.hireflow-shell > aside .bg-slate-50:hover { background: rgba(217,255,157,.12); }
+.hireflow-shell > aside .text-slate-500 { color: #9fb0bb; }
+.hireflow-shell > section > header { background: rgba(237,242,240,.92) !important; border-color: #dce4de !important; }
+.hireflow-shell > section > header .border { border-color: #d8e2dc; }
+.hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) { background: #102636; color: white; }
+.hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) .nav-item { color: #a9bbc5; }
+.hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) .nav-item:hover { background: rgba(255,255,255,.08); color: white; }
+.hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) .nav-item-active { background: #d9ff9d; color: #102636; }
+.hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) .border-t { border-color: rgba(255,255,255,.12); }
+.hireflow-shell .surface { border-color: #dce4de; border-radius: 1.35rem; box-shadow: 0 12px 32px rgba(16,38,54,.055); }
+.flow-orbit { pointer-events: none; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }

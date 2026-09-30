@@ -6,6 +6,8 @@ export type DemoUser = {
 
 export const demoSessionKey = "hireflow-demo-session";
 const demoAccountsKey = "hireflow-demo-accounts";
+export const demoAccount = { name: "Nabila Putri Ramadhani", email: "demo@hireflow.app", role: "Recruiting lead" } as const;
+const demoPassword = "HireFlowDemo2026!";
 
 function parseUser(value: string | null): DemoUser | null {
   if (!value) return null;
@@ -71,6 +73,7 @@ async function hashPassword(password: string) {
 
 export async function registerDemoAccount(user: DemoUser, password: string, remember = true) {
   if (typeof window === "undefined") return { ok: false as const, reason: "unavailable" as const };
+  if (user.email.toLowerCase() === demoAccount.email) return { ok: false as const, reason: "exists" as const };
   const accounts = readAccounts();
   if (accounts.some((account) => account.user.email.toLowerCase() === user.email.toLowerCase())) return { ok: false as const, reason: "exists" as const };
   accounts.push({ user, passwordHash: await hashPassword(password) });
@@ -80,7 +83,12 @@ export async function registerDemoAccount(user: DemoUser, password: string, reme
 }
 
 export async function authenticateDemoAccount(email: string, password: string, remember = true) {
-  const account = readAccounts().find((candidate) => candidate.user.email.toLowerCase() === email.toLowerCase());
+  const normalizedEmail = email.trim().toLowerCase();
+  let account = readAccounts().find((candidate) => candidate.user.email.toLowerCase() === normalizedEmail);
+  if (!account && normalizedEmail === demoAccount.email && password === demoPassword) {
+    account = { user: { ...demoAccount }, passwordHash: await hashPassword(demoPassword) };
+    window.localStorage.setItem(demoAccountsKey, JSON.stringify([...readAccounts(), account]));
+  }
   if (!account) return { ok: false as const, reason: "missing" as const };
   if (account.passwordHash !== await hashPassword(password)) return { ok: false as const, reason: "invalid" as const };
   saveDemoUser(account.user, remember);

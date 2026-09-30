@@ -27,10 +27,10 @@ export const emptyWorkspace: WorkspaceSnapshot = {
   settings: { reducedMotion: false, emailUpdates: true, weeklyDigest: false },
 };
 
-export const showcaseWorkspaceEmails = new Set(["nabila@hireflow.demo"]);
+export const showcaseWorkspaceEmails = new Set(["demo@hireflow.app"]);
 
 export const showcaseTeam: WorkspaceTeamMember[] = [
-  { id: 1, name: "Nabila Putri Ramadhani", role: "Recruiting lead", email: "nabila@hireflow.demo", initials: "NP", tone: "bg-blue-100 text-blue-700" },
+  { id: 1, name: "Nabila Putri Ramadhani", role: "Recruiting lead", email: "demo@hireflow.app", initials: "NP", tone: "bg-blue-100 text-blue-700" },
   { id: 2, name: "Dimas Pratama", role: "Hiring manager", email: "dimas@hireflow.demo", initials: "DP", tone: "bg-amber-100 text-amber-700" },
   { id: 3, name: "Siti Maharani", role: "People operations", email: "siti@hireflow.demo", initials: "SM", tone: "bg-emerald-100 text-emerald-700" },
   { id: 4, name: "Rizky Aditya", role: "Technical interviewer", email: "rizky@hireflow.demo", initials: "RA", tone: "bg-violet-100 text-violet-700" },

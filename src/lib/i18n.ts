@@ -151,7 +151,7 @@ export const landingCopy = {
   },
 } as const;
 
-export const appCopy = {
+export const appCopy: Record<Language, Record<string, string>> = {
   en: {
     workspace: "Workspace", organization: "Organization", team: "Team", settings: "Settings", talentTeam: "Talent team",
     help: "Help", notifications: "Notifications", newJob: "New job", dashboard: "Dashboard", candidates: "Candidates", jobs: "Jobs", interviews: "Interviews",
@@ -178,7 +178,10 @@ export const appCopy = {
     addCandidateTitle: "Tambah kandidat", addCandidateIntro: "Mulai catatan lamaran dengan informasi penting.", candidateName: "Nama kandidat", namePlaceholder: "mis. Ayu Lestari", email: "Email", emailPlaceholder: "ayu@hireflow.demo", rolePlaceholder: "Frontend Engineer", add: "Tambah kandidat", candidateAdded: "Kandidat ditambahkan ke tahap Lamaran.", requiredCandidate: "Tambahkan nama, peran, dan email untuk melanjutkan.",
     closeDialog: "Tutup dialog", search: "Cari", today: "Hari ini", tomorrow: "Besok", yesterday: "Kemarin", technical: "Teknis", portfolio: "Portofolio", screening: "Penyaringan", activity: "Aktivitas", note: "Catatan", statusOpen: "Terbuka", statusPaused: "Dijeda", statusClosed: "Ditutup", assessment: "Asesmen", offer: "Penawaran", hired: "Diterima", rejected: "Ditolak", applied: "Lamaran", all: "Semua", language: "Bahasa", english: "English", indonesian: "Bahasa Indonesia", loading: "Memuat…", error: "Terjadi kesalahan. Coba lagi.",
   },
-} as const;
+};
+
+appCopy.en.candidateHistory = "Candidate history";
+appCopy.id.candidateHistory = "Riwayat kandidat";
 
 export function getStageLabel(language: Language, stage: string) {
   const labels: Record<string, [string, string]> = {

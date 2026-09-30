@@ -89,7 +89,13 @@ Copy `.env.example`; do not commit local environment files. `JWT_SECRET` must be
 
 ## Demo mode
 
-The recruiter workspace is a clearly labeled browser-local demo. Registration creates a local account record with a one-way password hash, and login restores that account's session. Workspace records are stored under an email-scoped key, so a newly registered user starts with empty candidates, jobs, interviews, activity, team, and settings rather than inheriting showcase content. The fictional showcase workspace is available only to the explicitly designated showcase account `nabila@hireflow.demo` after it is registered in that browser.
+The recruiter workspace is a clearly labeled browser-local demo. The dedicated fictional showcase account is:
+
+| Email | Password |
+| --- | --- |
+| `demo@hireflow.app` | `HireFlowDemo2026!` |
+
+Registration creates a local account record with a one-way password hash, and login restores that account's session. Workspace records are stored under an email-scoped key, so a newly registered user starts with empty candidates, jobs, interviews, activity, team, and settings rather than inheriting showcase content. The showcase seed is available only to the built-in demo account.
 
 ## Testing
 
