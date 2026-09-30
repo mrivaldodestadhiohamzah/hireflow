@@ -58,6 +58,8 @@
 .hireflow-shell > aside .nav-item-active { background: #d9ff9d; color: #102636; box-shadow: none; }
 .hireflow-shell > aside .nav-item-active:hover { background: #d9ff9d; color: #102636; }
 .hireflow-shell > aside .eyebrow { color: #708893; }
+.hireflow-shell .flow-kicker { display: none; }
+.hireflow-shell > aside .eyebrow { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: none; }
 .hireflow-shell > aside .text-lg { color: white; }
 .hireflow-shell > aside .text-slate-400 { color: #8ea6b2; }
 .hireflow-shell > aside .bg-slate-50 { background: rgba(255,255,255,.08); }
