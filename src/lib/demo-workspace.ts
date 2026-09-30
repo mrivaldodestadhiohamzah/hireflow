@@ -51,14 +51,15 @@ function isSnapshot(value: unknown): value is WorkspaceSnapshot {
 }
 
 export function loadWorkspace(user: DemoUser, showcase: WorkspaceSnapshot): WorkspaceSnapshot {
-  if (typeof window === "undefined") return clone(showcase);
+  const fallback = showcaseWorkspaceEmails.has(user.email.trim().toLowerCase()) ? showcase : emptyWorkspace;
+  if (typeof window === "undefined") return clone(fallback);
   try {
     const saved = JSON.parse(window.localStorage.getItem(workspaceStorageKey(user.email)) ?? "null") as { version?: number; data?: unknown } | null;
     if (saved?.version === workspaceVersion && isSnapshot(saved.data)) return clone(saved.data);
   } catch {
     // Corrupt local demo data is treated as an empty workspace instead of crashing the app.
   }
-  return clone(showcase);
+  return clone(fallback);
 }
 
 export function saveWorkspace(email: string, data: WorkspaceSnapshot) {
