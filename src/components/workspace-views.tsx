@@ -25,7 +25,7 @@ function initials(name: string) {
 
 function CandidateAvatar({ candidate, size = "md" }: { candidate: WorkspaceCandidate; size?: "sm" | "md" | "lg" }) {
   const sizes = { sm: "h-8 w-8 text-[10px]", md: "h-10 w-10 text-xs", lg: "h-14 w-14 text-sm" };
-  return <span className={`${candidate.tone} ${sizes[size]} inline-flex shrink-0 items-center justify-center rounded-2xl font-bold`}>{candidate.initials || initials(candidate.name)}</span>;
+  return <span className={`${candidate.tone} ${sizes[size]} inline-flex shrink-0 items-center justify-center rounded-full font-bold`}>{candidate.initials || initials(candidate.name)}</span>;
 }
 
 function StageBadge({ stage, language }: { stage: WorkspaceStage; language: Language }) {
