@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { useMemo, useState, type ReactNode } from "react";
-import { ArrowRight, ArrowUpRight, BriefcaseBusiness, Check, ChevronRight, Clock3, FileText, Menu, MessageSquareText, Search, ShieldCheck, Sparkles, Workflow, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BriefcaseBusiness, Check, ChevronRight, Clock3, FileText, Menu, MessageSquareText, Search, ShieldCheck, Workflow, X } from "lucide-react";
 import { getStageLabel, landingCopy, Language } from "@/lib/i18n";
 import { LanguageSwitcher, useLanguage } from "./language-switcher";
 import { useReducedMotion } from "./motion";
@@ -111,7 +111,57 @@ function WorkflowStage({ stage, index, language, active, onSelect }: WorkflowSta
 
 function PipelineStory({ language }: { language: Language }) { const copy = landingCopy[language]; const [activeStage, setActiveStage] = useState<Stage>("Interview"); const detail = stageDetails[activeStage]; const contextItems = [{ label: copy.workflowCandidate, value: detail.name }, { label: copy.workflowRole, value: detail.role }, { label: copy.workflowInterview, value: detail.interview[language] }, { label: copy.workflowActivity, value: detail.activity[language] }, { label: copy.workflowNotes, value: detail.notes[language] }, { label: copy.workflowNext, value: detail.next[language] }]; return <div className="relative border-t border-slate-600 pt-8"><div aria-hidden="true" className="pointer-events-none absolute left-0 right-0 top-[3.15rem] z-0 hidden h-px bg-slate-600 sm:block" /><div role="tablist" aria-label={copy.workflowTitle} className="relative z-10 grid grid-cols-2 gap-y-8 sm:grid-cols-6 sm:gap-3">{stages.map((stage, index) => <WorkflowStage key={stage.id} stage={stage} index={index} language={language} active={activeStage === stage.id} onSelect={() => setActiveStage(stage.id)} />)}</div><AnimatePresence mode="wait" initial={false}><motion.div key={activeStage} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: .25 }} role="tabpanel" aria-live="polite" className="mt-10 grid gap-6 border-t border-slate-700 pt-6 sm:grid-cols-[.8fr_1.2fr]"><div><p className="flow-kicker !text-[#d9ff9d]">{copy.workflowCurrentStage}</p><h3 className="mt-3 text-2xl font-black tracking-[-.04em]">{getStageLabel(language, activeStage)}</h3><p className="mt-3 max-w-md text-sm leading-relaxed text-slate-300">{detail.description[language]}</p></div><div className="grid gap-3 rounded-2xl border border-slate-700 bg-white/5 p-4 sm:grid-cols-2">{contextItems.map((item) => <div key={item.label}><p className="text-[10px] font-black uppercase tracking-[.12em] text-slate-400">{item.label}</p><p className="mt-1 text-sm font-black text-white">{item.value}</p></div>)}</div></motion.div></AnimatePresence></div>; }
 
-function CandidateContext({ language }: { language: Language }) { const copy = landingCopy[language]; return <div className="overflow-hidden rounded-[1.75rem] border border-[#d8e2dc] bg-white shadow-[0_18px_50px_rgba(16,38,54,.08)]"><div className="flex items-center justify-between border-b border-white/10 bg-[#102636] px-5 py-4 text-white sm:px-7"><div><p className="flow-kicker !text-[#d9ff9d]">{copy.candidateContext}</p><p className="mt-1 text-sm font-black">Ayu Lestari · Senior Frontend Engineer</p></div><span className="rounded-full bg-[#d9ff9d] px-3 py-1 text-xs font-black text-[#102636]">91% match</span></div><div className="grid gap-6 p-5 sm:p-7 md:grid-cols-[.8fr_1.2fr]"><div><div className="flex items-center gap-3"><span className="grid h-12 w-12 place-items-center rounded-full bg-violet-100 text-sm font-black text-violet-700">AL</span><div><p className="font-black text-[#102636]">Ayu Lestari</p><p className="mt-1 text-xs text-slate-500">6 years · Interview</p></div></div><div className="mt-6 flex flex-wrap gap-2">{["React", "TypeScript", "Design systems"].map((skill) => <span key={skill} className="rounded-lg bg-[#edf2ed] px-2.5 py-1.5 text-xs font-bold text-slate-700"><Check size={12} className="mr-1 inline text-emerald-600" />{skill}</span>)}</div></div><div className="border-l-0 border-[#e3ebe4] md:border-l md:pl-6"><div className="flex items-center gap-2"><Sparkles size={16} className="text-brand" /><p className="text-xs font-black uppercase tracking-[.12em] text-brand">{copy.reviewableInsight}</p></div><p className="mt-3 text-sm leading-relaxed text-slate-600">Strong alignment with the role requirements, supported by resume evidence and interview context.</p><div className="mt-4 border-l-2 border-[#d9ff9d] pl-3"><p className="text-xs font-bold text-[#102636]">{language === "en" ? "Potential gap" : "Potensi kesenjangan"}</p><p className="mt-1 text-xs leading-relaxed text-slate-500">{language === "en" ? "Confirm depth of platform ownership during the next conversation." : "Konfirmasi kedalaman kepemilikan platform pada percakapan berikutnya."}</p></div><p className="mt-5 border-t border-[#e3ebe4] pt-4 text-[11px] leading-relaxed text-slate-500">{language === "en" ? "AI-assisted review is guidance, not a hiring decision. Review original materials." : "Tinjauan berbantuan AI adalah panduan, bukan keputusan perekrutan. Tinjau materi asli."}</p></div></div></div>; }
+function CandidateContext({ language }: { language: Language }) {
+  const copy = landingCopy[language];
+  const en = language === "en";
+  const skills = ["React", "TypeScript", "Design systems"];
+
+  return <div className="border-y border-[#d8e2dc] py-6 sm:py-8">
+    <div className="flex flex-wrap items-start justify-between gap-5 border-b border-[#e3ebe4] pb-6">
+      <div>
+        <p className="flow-kicker text-brand">{copy.candidateContext}</p>
+        <h3 className="mt-2 text-xl font-black tracking-[-.03em] text-[#102636]">Ayu Lestari</h3>
+        <p className="mt-1 text-sm font-bold text-slate-500">Senior Frontend Engineer · Interview</p>
+      </div>
+      <div className="shrink-0 sm:text-right">
+        <p className="flow-kicker">{en ? "Role match" : "Kecocokan peran"}</p>
+        <p className="mt-1 text-3xl font-black tracking-[-.05em] text-[#102636]">91%</p>
+        <p className="mt-1 max-w-[15rem] text-xs leading-relaxed text-slate-500 sm:ml-auto">{en ? "Based on skills and relevant experience found in the application." : "Berdasarkan keahlian dan pengalaman relevan dalam lamaran."}</p>
+      </div>
+    </div>
+    <div className="grid gap-8 py-6 md:grid-cols-[.8fr_1.2fr] md:py-7">
+      <div>
+        <div className="flex items-center gap-3">
+          <span className="grid h-12 w-12 place-items-center rounded-full bg-violet-100 text-sm font-black text-violet-700">AL</span>
+          <div>
+            <p className="font-black text-[#102636]">{en ? "6 years experience" : "Pengalaman 6 tahun"}</p>
+            <p className="mt-1 text-xs text-slate-500">{en ? "Currently in interview" : "Sedang dalam tahap wawancara"}</p>
+          </div>
+        </div>
+        <div className="mt-7">
+          <p className="flow-kicker">{en ? "Skills found in the application" : "Keahlian yang ditemukan dalam lamaran"}</p>
+          <div className="mt-3 space-y-2 text-sm font-bold text-slate-700">
+            {skills.map((skill) => <p key={skill} className="flex items-center gap-2"><Check size={14} className="shrink-0 text-emerald-600" />{skill}</p>)}
+          </div>
+        </div>
+      </div>
+      <div className="border-[#e3ebe4] md:border-l md:pl-8">
+        <p className="flow-kicker text-brand">{en ? "Recruiter review" : "Tinjauan perekrut"}</p>
+        <div className="mt-4 space-y-5">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[.12em] text-[#102636]">{en ? "What stands out" : "Yang menonjol"}</p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">{en ? "React and TypeScript experience aligns with the role, with design-systems work visible in the application." : "Pengalaman React dan TypeScript selaras dengan peran, dengan pengalaman design system terlihat dalam lamaran."}</p>
+          </div>
+          <div className="border-l-2 border-[#d9ff9d] pl-3">
+            <p className="text-xs font-black uppercase tracking-[.12em] text-[#102636]">{en ? "Follow up" : "Tindak lanjut"}</p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-500">{en ? "Confirm depth of platform ownership during the next conversation." : "Konfirmasi kedalaman kepemilikan platform pada percakapan berikutnya."}</p>
+          </div>
+        </div>
+        <p className="mt-6 border-t border-[#e3ebe4] pt-4 text-[11px] leading-relaxed text-slate-500">{en ? "AI-generated guidance. Review the original application and interview evidence before making a hiring decision." : "Panduan yang dibuat AI. Tinjau lamaran asli dan bukti wawancara sebelum mengambil keputusan perekrutan."}</p>
+      </div>
+    </div>
+  </div>;
+}
 
 function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) { return <motion.div initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.14 }} transition={{ duration: 0.52, delay: delay / 1000, ease: [0.2, 0.75, 0.25, 1] }} className={className}>{children}</motion.div>; }
 
