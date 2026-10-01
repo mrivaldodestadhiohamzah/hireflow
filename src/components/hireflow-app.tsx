@@ -13,7 +13,7 @@ import { analyzeCandidate } from "@/lib/candidate-analysis";
 import { saveDemoUser, clearDemoUser, type DemoUser } from "@/lib/demo-auth";
 import { getGreeting, getJobStatusLabel, getStageLabel, type Language } from "@/lib/i18n";
 import { appCopy } from "@/lib/product-copy";
-import { emptyWorkspace, loadWorkspace, saveWorkspace, showcaseTeam, showcaseWorkspaceEmails, type WorkspaceSettings, type WorkspaceSnapshot, type WorkspaceTeamMember } from "@/lib/demo-workspace";
+import { emptyWorkspace, loadWorkspace, saveWorkspace, showcaseTeam, type WorkspaceSettings, type WorkspaceSnapshot, type WorkspaceTeamMember } from "@/lib/demo-workspace";
 import { LanguageSwitcher, useLanguage } from "./language-switcher";
 import { HelpPage, ProfilePage, SettingsPage, TeamPage } from "./workspace-sections";
 import { CandidateContextDrawer, CandidatesWorkspace, DashboardOverview, InterviewsWorkspace, JobsWorkspace } from "./workspace-views";
@@ -88,7 +88,7 @@ export default function HireFlowApp({ user }: { user: DemoUser }) {
   const [profile, setProfile] = useState(user);
   const [currentTime, setCurrentTime] = useState(() => new Date());
   const [loadedWorkspace] = useState<WorkspaceSnapshot>(() => loadWorkspace(user, showcaseWorkspace));
-  const workspaceName = showcaseWorkspaceEmails.has(profile.email.trim().toLowerCase()) ? "Northstar Labs" : "HireFlow workspace";
+  const workspaceName = "HireFlow workspace";
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [stageFilter, setStageFilter] = useState<Stage | "All">("All");
