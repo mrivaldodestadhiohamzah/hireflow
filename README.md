@@ -1,6 +1,6 @@
 # HireFlow
 
-## AI-Powered Applicant Tracking System
+## HireFlow recruiting workspace
 
 HireFlow is an independent portfolio project exploring a thoughtful recruiting workflow: applicant intake, job management, interview coordination, an auditable candidate pipeline, and AI-assisted resume review. It is intentionally designed so the human recruiter remains responsible for every decision.
 
