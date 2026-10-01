@@ -4,31 +4,32 @@
 
 @layer base {
   * { @apply border-line; }
-  body { @apply bg-mist text-ink antialiased; }
+  body { @apply bg-mist text-ink antialiased; font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif; }
+  h1, h2, h3, h4, button, input, select, textarea { font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif; }
   button, input, select { font: inherit; }
 }
 
 @layer utilities {
-  .surface { @apply rounded-lg border border-line bg-white shadow-soft; }
+  .surface { @apply rounded-md border border-line bg-white shadow-none; }
   .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[.13em] text-slate-500; }
   .nav-item { @apply flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-slate-600 transition duration-200 hover:bg-slate-100 hover:text-ink; }
   .nav-item-active { @apply bg-blue-50 text-brand; box-shadow: inset 3px 0 0 theme('colors.brand'); }
-  .surface { transition: box-shadow 200ms ease, border-color 200ms ease; }
+  .surface { transition: border-color 200ms ease; }
   .surface:hover { border-color: #d5ddf2; }
 }
 
 @layer components {
-  .flow-panel { @apply rounded-lg border border-[#dce4de] bg-white p-5 shadow-[0_12px_32px_rgba(16,38,54,.055)] transition duration-200 sm:p-6; animation: flow-card-in 480ms cubic-bezier(.2,.75,.25,1) both; }
-  .flow-panel:hover { border-color: #c4d4ca; box-shadow: 0 16px 38px rgba(16, 38, 54, .08); }
+  .flow-panel { @apply rounded-md border border-[#dce4de] bg-white p-5 shadow-none transition duration-200 sm:p-6; animation: flow-card-in 480ms cubic-bezier(.2,.75,.25,1) both; }
+  .flow-panel:hover { border-color: #c4d4ca; }
   .flow-kicker { @apply text-[10px] font-black uppercase tracking-[.16em] text-slate-400; }
-  .flow-primary-button { @apply inline-flex h-11 items-center gap-2 rounded-md bg-[#102636] px-4 text-sm font-black text-white shadow-[0_8px_18px_rgba(16,38,54,.15)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#183b50] active:translate-y-0; }
-  .flow-secondary-button { @apply inline-flex h-11 items-center gap-2 rounded-md border border-[#d5e0d9] bg-white px-4 text-sm font-black text-[#102636] transition duration-200 hover:-translate-y-0.5 hover:border-[#102636] hover:bg-[#f7faf8] active:translate-y-0; }
-  .flow-small-button { @apply inline-flex h-10 items-center gap-2 rounded-md border border-[#d8e2dc] bg-white px-3 text-xs font-black text-slate-600 transition hover:border-[#102636] hover:text-[#102636]; }
+  .flow-primary-button { @apply inline-flex h-11 items-center gap-2 rounded-sm bg-[#102636] px-4 text-sm font-black text-white shadow-none transition duration-200 hover:bg-[#183b50] active:translate-y-0; }
+  .flow-secondary-button { @apply inline-flex h-11 items-center gap-2 rounded-sm border border-[#d5e0d9] bg-white px-4 text-sm font-black text-[#102636] transition duration-200 hover:border-[#102636] hover:bg-[#f7faf8] active:translate-y-0; }
+  .flow-small-button { @apply inline-flex h-10 items-center gap-2 rounded-sm border border-[#d8e2dc] bg-white px-3 text-xs font-black text-slate-600 transition hover:border-[#102636] hover:text-[#102636]; }
   .flow-link { @apply inline-flex items-center gap-1 text-xs font-black text-[#2962ff] hover:underline; }
-  .flow-input { @apply h-11 w-full rounded-md border border-[#d8e2dc] bg-white px-3 text-sm font-normal text-[#102636] outline-none transition placeholder:text-slate-400 focus:border-[#2962ff] focus:ring-4 focus:ring-blue-100; }
-  .flow-candidate-card { @apply rounded-lg border border-[#e1e9e3] bg-white p-4 transition duration-200 hover:-translate-y-0.5 hover:border-[#2962ff] hover:shadow-[0_12px_28px_rgba(41,98,255,.09)]; animation: flow-card-in 420ms cubic-bezier(.2,.75,.25,1) both; }
-  .flow-job-card { @apply rounded-lg border border-[#dce4de] bg-white p-5 shadow-[0_12px_32px_rgba(16,38,54,.055)] transition duration-200 hover:-translate-y-0.5 hover:border-[#102636] hover:shadow-[0_18px_36px_rgba(16,38,54,.1)]; animation: flow-card-in 460ms cubic-bezier(.2,.75,.25,1) both; }
-  .flow-activity { @apply flex items-start gap-3 rounded-lg border border-slate-100 bg-[#fbfcfb] p-4; animation: flow-rise 420ms cubic-bezier(.2,.75,.25,1) both; }
+  .flow-input { @apply h-11 w-full rounded-sm border border-[#d8e2dc] bg-white px-3 text-sm font-normal text-[#102636] outline-none transition placeholder:text-slate-400 focus:border-[#2962ff] focus:ring-2 focus:ring-blue-100; }
+  .flow-candidate-card { @apply rounded-md border border-[#e1e9e3] bg-white p-4 transition duration-200 hover:border-[#2962ff]; animation: flow-card-in 420ms cubic-bezier(.2,.75,.25,1) both; }
+  .flow-job-card { @apply rounded-md border border-[#dce4de] bg-white p-5 shadow-none transition duration-200 hover:border-[#102636]; animation: flow-card-in 460ms cubic-bezier(.2,.75,.25,1) both; }
+  .flow-activity { @apply flex items-start gap-3 rounded-md border border-slate-100 bg-[#fbfcfb] p-4; animation: flow-rise 420ms cubic-bezier(.2,.75,.25,1) both; }
   .flow-activity-mark { @apply grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#d9ff9d] text-[#102636]; }
   .flow-reveal { animation: flow-rise 520ms cubic-bezier(.2,.75,.25,1) var(--flow-delay, 0ms) both; }
   .flow-page-enter > * { animation: flow-rise 520ms cubic-bezier(.2,.75,.25,1) both; }
@@ -43,7 +44,7 @@
 }
 
 @keyframes flow-rise { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
-@keyframes flow-card-in { from { opacity: 0; transform: translate3d(0, 8px, 0) scale(.985); } to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
+@keyframes flow-card-in { from { opacity: 0; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
 @keyframes flow-empty-in { from { opacity: 0; transform: translate3d(0, 10px, 0) scale(.98); } to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
 @keyframes flow-backdrop { from { opacity: 0; } to { opacity: 1; } }
 @keyframes flow-drawer { from { opacity: 0; transform: translate3d(32px, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
@@ -52,7 +53,7 @@
 @keyframes flow-shimmer { from { background-position: 180% 0; } to { background-position: -20% 0; } }
 
 .hireflow-shell { background: #edf2f0; }
-.hireflow-shell > aside { background: #102636 !important; border-color: rgba(255,255,255,.1) !important; color: white; box-shadow: 12px 0 40px rgba(16,38,54,.08); }
+.hireflow-shell > aside { background: #102636 !important; border-color: rgba(255,255,255,.1) !important; color: white; box-shadow: none; }
 .hireflow-shell > aside .nav-item { color: #a9bbc5; }
 .hireflow-shell > aside .nav-item:hover { background: rgba(255,255,255,.08); color: white; }
 .hireflow-shell > aside .nav-item-active { background: #d9ff9d; color: #102636; box-shadow: none; }
@@ -76,7 +77,7 @@
 .hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) .nav-item:hover { background: rgba(255,255,255,.08); color: white; }
 .hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) .nav-item-active { background: #d9ff9d; color: #102636; }
 .hireflow-shell .fixed.inset-0 > aside:not([role="dialog"]) .border-t { border-color: rgba(255,255,255,.12); }
-.hireflow-shell .surface { border-color: #dce4de; border-radius: .5rem; box-shadow: 0 12px 32px rgba(16,38,54,.055); }
+.hireflow-shell .surface { border-color: #dce4de; border-radius: .375rem; box-shadow: none; }
 .hireflow-shell .flow-hero { border-radius: .5rem; }
 .hireflow-shell .rounded-2xl:not(.rounded-full) { border-radius: .5rem; }
 .hireflow-shell .rounded-xl:not(.rounded-full) { border-radius: .375rem; }
@@ -97,6 +98,14 @@ main.min-h-screen .rounded-xl:not(.rounded-full) { border-radius: .375rem; }
 .hireflow-shell .flow-panel button.group { animation: flow-card-in 420ms cubic-bezier(.2,.75,.25,1) both; }
 .hireflow-shell [role="status"] { animation: flow-toast 240ms cubic-bezier(.2,.75,.25,1) both; }
 .flow-orbit { pointer-events: none; }
+.flow-orbit { display: none; }
+#main-content .relative.overflow-hidden { border-radius: .5rem; box-shadow: none; }
+#main-content h1 { font-size: clamp(2.5rem, 5vw, 4.6rem); line-height: .98; }
+#main-content .rounded-xl:not(.rounded-full), #main-content .rounded-2xl:not(.rounded-full), #product .rounded-xl:not(.rounded-full), #product .rounded-2xl:not(.rounded-full), #workflow .rounded-xl:not(.rounded-full), #workflow .rounded-2xl:not(.rounded-full), #context .rounded-xl:not(.rounded-full), #context .rounded-2xl:not(.rounded-full) { border-radius: .5rem; }
+.hireflow-shell .backdrop-blur-sm { backdrop-filter: none; }
+.flow-panel:hover, .flow-candidate-card:hover, .flow-job-card:hover { transform: none; box-shadow: none; }
+main.min-h-screen > .mx-auto > .grid.max-w-5xl { box-shadow: none; }
+main.min-h-screen > .mx-auto > .grid.max-w-5xl .relative.overflow-hidden > .absolute { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }

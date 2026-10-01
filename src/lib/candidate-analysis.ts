@@ -7,7 +7,7 @@ export function matchBand(score: number): MatchBand {
 }
 
 export function recruiterDisclaimer() {
-  return "AI-assisted analysis is guidance, not a hiring decision. Review original materials and interview evidence.";
+  return "AI-generated guidance, not a hiring decision. Review the original application and interview evidence.";
 }
 
 export type CandidateAnalysisInput = {

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { appCopy, languageStorageKey, Language } from "@/lib/i18n";
+import { languageStorageKey, type Language } from "@/lib/i18n";
+import { appCopy } from "@/lib/product-copy";
 
 export function useLanguage() {
   const [language, setLanguage] = useState<Language>("en");

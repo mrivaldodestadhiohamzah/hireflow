@@ -20,7 +20,7 @@ export type WorkspaceSnapshot = {
   settings: WorkspaceSettings;
 };
 
-const workspaceVersion = 1;
+const workspaceVersion = 2;
 
 export const emptyWorkspace: WorkspaceSnapshot = {
   candidates: [], jobs: [], interviews: [], activities: [], team: [],

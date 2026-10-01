@@ -3,8 +3,8 @@ import hireFlowLogo from "@/components/hireflowlogo.png";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HireFlow — AI-Powered Recruitment Platform",
-  description: "A thoughtful recruiting workspace for small teams who want to hire with confidence.",
+  title: "HireFlow — Recruitment workspace",
+  description: "A recruiting workspace for reviewing applications, interviews, feedback, and hiring decisions.",
   icons: {
     icon: [{ url: hireFlowLogo.src, type: "image/png" }],
   },

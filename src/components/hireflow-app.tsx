@@ -5,13 +5,14 @@ import Image from "next/image";
 import {
   ArrowRight, Bell, BriefcaseBusiness, CalendarDays, Check, ChevronRight, CircleHelp,
   FileText, Filter, LayoutDashboard, Menu, MoreHorizontal, Plus, Search, Settings,
-  SlidersHorizontal, Sparkles, Users, X,
+  SlidersHorizontal, ClipboardCheck as Sparkles, Users, X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { analyzeCandidate } from "@/lib/candidate-analysis";
 import { saveDemoUser, clearDemoUser, type DemoUser } from "@/lib/demo-auth";
-import { appCopy, getGreeting, getJobStatusLabel, getStageLabel, Language } from "@/lib/i18n";
+import { getGreeting, getJobStatusLabel, getStageLabel, type Language } from "@/lib/i18n";
+import { appCopy } from "@/lib/product-copy";
 import { emptyWorkspace, loadWorkspace, saveWorkspace, showcaseTeam, showcaseWorkspaceEmails, type WorkspaceSettings, type WorkspaceSnapshot, type WorkspaceTeamMember } from "@/lib/demo-workspace";
 import { LanguageSwitcher, useLanguage } from "./language-switcher";
 import { HelpPage, ProfilePage, SettingsPage, TeamPage } from "./workspace-sections";
@@ -40,12 +41,12 @@ const stages: Stage[] = ["Applied", "Screening", "Interview", "Assessment", "Off
 const pipelineStages: Stage[] = [...stages, "Rejected"];
 const initialCandidates: Candidate[] = [
   { id: 1, name: "Ayu Lestari", initials: "AL", role: "Frontend Engineer", job: "Senior Frontend Engineer", stage: "Interview", score: 91, experience: "6 years", skills: ["React", "TypeScript", "Design systems"], applied: "Today", tone: "bg-violet-100 text-violet-700", email: "ayu.lestari@hireflow.demo", notes: ["Strong systems thinking; ask about mentoring during the panel."] },
-  { id: 2, name: "Bagas Pranoto", initials: "BP", role: "Product Designer", job: "Product Designer", stage: "Screening", score: 88, experience: "5 years", skills: ["Figma", "Research", "Prototyping"], applied: "Yesterday", tone: "bg-amber-100 text-amber-700", email: "bagas.pranoto@hireflow.demo", notes: [] },
-  { id: 3, name: "Citra Maharani", initials: "CM", role: "Backend Engineer", job: "Backend Engineer", stage: "Assessment", score: 84, experience: "4 years", skills: ["C#", "PostgreSQL", "Docker"], applied: "Aug 10", tone: "bg-emerald-100 text-emerald-700", email: "citra.maharani@hireflow.demo", notes: ["Assessment submitted; review database trade-offs next."] },
+  { id: 2, name: "Bagas Pranoto", initials: "BP", role: "Product Designer", job: "Product Designer", stage: "Screening", score: 72, experience: "5 years", skills: ["Figma", "Research", "Prototyping"], applied: "Yesterday", tone: "bg-amber-100 text-amber-700", email: "bagas.pranoto@hireflow.demo", notes: [] },
+  { id: 3, name: "Citra Maharani", initials: "CM", role: "Backend Engineer", job: "Backend Engineer", stage: "Assessment", score: 68, experience: "4 years", skills: ["C#", "PostgreSQL", "Docker"], applied: "Aug 10", tone: "bg-emerald-100 text-emerald-700", email: "citra.maharani@hireflow.demo", notes: ["Assessment submitted; review database trade-offs next."] },
   { id: 4, name: "Fajar Nugroho", initials: "FN", role: "Frontend Engineer", job: "Senior Frontend Engineer", stage: "Applied", score: 79, experience: "3 years", skills: ["React", "Next.js", "CSS"], applied: "Aug 10", tone: "bg-sky-100 text-sky-700", email: "fajar.nugroho@hireflow.demo", notes: [] },
-  { id: 5, name: "Gita Permata", initials: "GP", role: "Customer Success", job: "Customer Success Manager", stage: "Offer", score: 93, experience: "7 years", skills: ["SaaS", "Onboarding", "Gainsight"], applied: "Aug 8", tone: "bg-rose-100 text-rose-700", email: "gita.permata@hireflow.demo", notes: ["Offer sent; waiting for candidate response."] },
-  { id: 6, name: "Hendra Wijaya", initials: "HW", role: "Backend Engineer", job: "Backend Engineer", stage: "Screening", score: 76, experience: "2 years", skills: ["Python", "FastAPI", "AWS"], applied: "Aug 7", tone: "bg-indigo-100 text-indigo-700", email: "hendra.wijaya@hireflow.demo", notes: [] },
-  { id: 7, name: "Intan Sari", initials: "IS", role: "Product Designer", job: "Product Designer", stage: "Interview", score: 82, experience: "5 years", skills: ["UX", "Analytics", "Figma"], applied: "Aug 6", tone: "bg-orange-100 text-orange-700", email: "intan.sari@hireflow.demo", notes: [] },
+  { id: 5, name: "Gita Permata", initials: "GP", role: "Customer Success", job: "Customer Success Manager", stage: "Offer", score: 86, experience: "7 years", skills: ["SaaS", "Onboarding", "Gainsight"], applied: "Aug 8", tone: "bg-rose-100 text-rose-700", email: "gita.permata@hireflow.demo", notes: ["Offer sent; waiting for candidate response."] },
+  { id: 6, name: "Hendra Wijaya", initials: "HW", role: "Backend Engineer", job: "Backend Engineer", stage: "Screening", score: 61, experience: "2 years", skills: ["Python", "FastAPI", "AWS"], applied: "Aug 7", tone: "bg-indigo-100 text-indigo-700", email: "hendra.wijaya@hireflow.demo", notes: [] },
+  { id: 7, name: "Intan Sari", initials: "IS", role: "Product Designer", job: "Product Designer", stage: "Interview", score: 74, experience: "5 years", skills: ["UX", "Analytics", "Figma"], applied: "Aug 6", tone: "bg-orange-100 text-orange-700", email: "intan.sari@hireflow.demo", notes: [] },
 ];
 const initialJobs: Job[] = [
   { id: 1, title: "Senior Frontend Engineer", department: "Engineering", location: "Remote · Europe", type: "Full-time", status: "Open", updated: "2 days ago" },
@@ -64,7 +65,7 @@ const navItems: { view: View; icon: LucideIcon }[] = [
 ];
 const showcaseWorkspace: WorkspaceSnapshot = {
   candidates: initialCandidates, jobs: initialJobs, interviews: initialInterviews,
-  activities: ["Ayu Lestari moved to Interview", "Citra Maharani submitted an assessment", "Gita Permata received an offer"],
+  activities: ["Ayu Lestari moved to Interview", "Citra Maharani submitted a take-home assessment", "Gita Permata is waiting on an offer response"],
   team: showcaseTeam, settings: emptyWorkspace.settings,
 };
 
